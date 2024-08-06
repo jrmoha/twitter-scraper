@@ -1,16 +1,18 @@
 import puppeteer from "puppeteer";
-import parseAccounts from "./helpers/parseAccount.js";
+import parseAccounts from "./helpers/parseAccounts.js";
 import twitterAccounts from "./data/twitterAccounts.js";
 import { searchTweet } from "./helpers/searchTweet.js";
 
 let TICKER = process.argv[2];
 let MINUTES = parseInt(process.argv[3], 10);
 if (!TICKER || !MINUTES) {
-  // console.log("Please provide a ticker and a time interval in minutes");
-  // process.exit(1);
   TICKER ??= "$TSLA";
   MINUTES ||= 15;
 }
+if (typeof MINUTES !== "number" || MINUTES <= 0) {
+  MINUTES = 15;
+}
+
 const INTERVAL = MINUTES * 60 * 1000; // 15 minutes
 
 const getTweets = async () => {
