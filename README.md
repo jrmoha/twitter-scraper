@@ -19,5 +19,9 @@ npm install
 ### Run the App
 
 ```bash
+#start the app with default stock name and interval in minutes
+node index.js
+
+# start the app with custom stock name and interval in minutes
 node index.js \<stock_name> <interval>
 ```
